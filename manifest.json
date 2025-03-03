@@ -1,25 +1,23 @@
 {
-  "version": "3.24.6",
-  "key": "ilkggpgmkemaniponkfgnkonpajankkm",
   "author": "Daniel C. Howe",
   "background": {
     "page": "background.html",
-    "persistent":true
+    "persistent": true
   },
   "browser_action": {
     "default_icon": {
       "16": "img/icon_16.png",
       "32": "img/icon_32.png"
     },
-    "default_title": "AdNauseam",
-    "default_popup": "menu.html"
+    "default_popup": "popup-fenix.html",
+    "default_title": "AdNauseam"
   },
   "commands": {
-    "launch-element-zapper": {
-      "description": "__MSG_popupTipZapper__"
-    },
     "launch-element-picker": {
       "description": "__MSG_popupTipPicker__"
+    },
+    "launch-element-zapper": {
+      "description": "__MSG_popupTipZapper__"
     },
     "launch-logger": {
       "description": "__MSG_popupTipLog__"
@@ -30,10 +28,7 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
+      "all_frames": true,
       "js": [
         "js/vapi.js",
         "js/vapi-client.js",
@@ -41,11 +36,18 @@
         "js/adn/parser.js",
         "js/contentscript.js"
       ],
-      "run_at": "document_start",
-      "all_frames": true,
-      "match_about_blank": true
+      "match_about_blank": true,
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "run_at": "document_start"
     },
     {
+      "all_frames": false,
+      "js": [
+        "/js/scriptlets/subscriber.js"
+      ],
       "matches": [
         "https://easylist.to/*",
         "https://*.fanboy.co.nz/*",
@@ -55,40 +57,37 @@
         "https://*.github.io/*",
         "https://*.letsblock.it/*"
       ],
-      "js": [
-        "/js/scriptlets/subscriber.js"
-      ],
-      "run_at": "document_idle",
-      "all_frames": false
+      "run_at": "document_idle"
     },
     {
+      "all_frames": false,
+      "js": [
+        "/js/scriptlets/updater.js"
+      ],
       "matches": [
         "https://github.com/uBlockOrigin/*",
         "https://ublockorigin.github.io/*",
         "https://github.com/dhowe/AdNauseam/*"
       ],
-      "js": [
-        "/js/scriptlets/updater.js"
-      ],
-      "run_at": "document_idle",
-      "all_frames": false
+      "run_at": "document_idle"
     }
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "img/icon_16.png",
-    "128": "img/icon_128.png"
+    "128": "img/icon_128.png",
+    "16": "img/icon_16.png"
   },
+  "incognito": "spanning",
+  "key": "ilkggpgmkemaniponkfgnkonpajankkm",
   "manifest_version": 2,
   "minimum_chrome_version": "66.0",
   "name": "AdNauseam",
   "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
+    "open_in_tab": true,
+    "page": "dashboard.html"
   },
-  "incognito": "spanning",
   "permissions": [
     "alarms",
     "contextMenus",
@@ -106,8 +105,9 @@
   "storage": {
     "managed_schema": "managed_storage.json"
   },
+  "update_url": "https://rednoise.org/adnauseam/updates.xml",
+  "version": "3.24.6",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
-  ],
-  "update_url": "https://rednoise.org/adnauseam/updates.xml"
+  ]
 }
