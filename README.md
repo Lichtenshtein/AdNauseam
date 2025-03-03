@@ -1,3 +1,41 @@
+A fork with minor custom changes that allows to use AdNauseam in a familiar for uBO users way.
+
+***
+
+Below changes to `manifest.json` change the default AdNauseam popup menu to the familiar dashboard from uBO.
+
+Was:
+
+    "default_popup": "menu.html"
+
+Became:
+
+    "default_popup": "popup-fenix.html"
+
+AdNauseam's list of clicked ads and ad vault menu is still available via the internal link which is best saved to your browser bookmarks if you still need this menu.
+
+    chrome-extension://dkoaabhijcomjinndlgbmfnmnjnmdeeb/menu.html
+
+It is worth going there periodically and clearing the database of clicked ads. Instead `dkoaabhijcomjinndlgbmfnmnjnmdeeb` must be your AdNauseam's extension id which can be found on `chrome://extensions` page.
+
+Below changes to `manifest.json` extend AdNauseam's options page with more settings like in uBO.
+
+Was:
+
+    "options_ui": {"page": "options.html"}
+  
+Became:
+
+    "options_ui": {"page": "dashboard.html"}
+
+Note that AdNauseam allows you to import your settings from uBO.
+
+Below changes eliminate lags and slowdowns noticeable when accessing exptension's options menu on certain low-end/mid-end configurations.
+
+Three giant images `gray_grid.png`, `gray_grid_light.png`, `adn_clickbot_bg.jpg` in src/img folder replaced with 1x1 pixel size dummies.
+
+***
+
 <!-- [![Build Status](https://travis-ci.org/dhowe/AdNauseam.svg)](https://travis-ci.org/dhowe/AdNauseam) -->
 ![version](https://badgen.net/amo/v/adnauseam) ![stars](https://badgen.net/amo/stars/adnauseam) <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/license-GPL-orange.svg" alt="gpl license"></a> [![open-collective](https://opencollective.com/adnauseam/tiers/badge.svg)](https://opencollective.com/adnauseam#category-CONTRIBUTE)
 
